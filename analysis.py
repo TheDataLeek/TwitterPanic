@@ -69,10 +69,9 @@ def spark_stream(sc, ssc):
     coord_stream = stream.map(lambda line: ast.literal_eval(line)) \
                         .filter(filter_posts) \
                         .map(get_coord)
-    coord_stream.pprint(BLOCKSIZE)
 
     # Convert to something usable....
-    #coord_stream.foreachRDD(process)
+    coord_stream.foreachRDD(process)
 
     # Run!
     ssc.start()
@@ -83,7 +82,8 @@ def process(t, rdd):
     """
     Using this: https://github.com/apache/spark/blob/master/examples/src/main/python/streaming/sql_network_wordcount.py
     """
-    pass
+    data = rdd.collect()
+    print(data)
 
 
 def stream_twitter_data():
