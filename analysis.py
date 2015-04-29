@@ -12,11 +12,16 @@ from __future__ import print_function
 import sys
 import ast
 import json
-import random
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
 import requests
+
+import numpy as np
+import matplotlib.pyplot as plt
+import threading
+import Queue
+import time
 
 # File with OAuth keys
 # Corresponding format is the following
@@ -26,19 +31,34 @@ import requests
 import config
 
 
-BATCH_INTERVAL = 30  # How frequently to update (seconds)
-BLOCKSIZE = 5  # How many tweets per update
+BATCH_INTERVAL = 60  # How frequently to update (seconds)
+BLOCKSIZE = 20  # How many tweets per update
 
 
 def main():
+    threads = []
+    q = Queue.Queue()
     # Set up spark objects and run
     sc  = SparkContext('local[4]', 'Social Panic Analysis')
     ssc = StreamingContext(sc, BATCH_INTERVAL)
+    threads.append(threading.Thread(target=spark_stream, args=(sc, ssc, q)))
+    threads.append(threading.Thread(target=data_plotting, args=(q,)))
+    [t.start() for t in threads]
 
-    spark_stream(sc, ssc)
+
+def data_plotting(q):
+    fig = plt.figure()
+    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+    while True:
+        if q.empty():
+            time.sleep(10)
+        else:
+            data = q.get()
+            for t in data:
+                ax.scatter(t[0], t[1])
 
 
-def spark_stream(sc, ssc):
+def spark_stream(sc, ssc, q):
     """
     Establish queued spark stream.
 
@@ -60,7 +80,7 @@ def spark_stream(sc, ssc):
     :param ssc: StreamingContext
     """
     # Setup Stream
-    rdd = ssc.sparkContext.parallelize(range(BLOCKSIZE))
+    rdd = ssc.sparkContext.parallelize([0])
     stream = ssc.queueStream([], default=rdd)
 
     stream = stream.transform(tfunc)
@@ -71,19 +91,11 @@ def spark_stream(sc, ssc):
                         .map(get_coord)
 
     # Convert to something usable....
-    coord_stream.foreachRDD(process)
+    coord_stream.foreachRDD(lambda t, rdd: q.put(rdd.collect()))
 
     # Run!
     ssc.start()
     ssc.awaitTermination()
-
-
-def process(t, rdd):
-    """
-    Using this: https://github.com/apache/spark/blob/master/examples/src/main/python/streaming/sql_network_wordcount.py
-    """
-    data = rdd.collect()
-    print(data)
 
 
 def stream_twitter_data():
