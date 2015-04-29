@@ -23,6 +23,8 @@ import threading
 import Queue
 import time
 
+import cartopy.crs as ccrs
+
 # File with OAuth keys
 # Corresponding format is the following
 # auth = requests_oauthlib.OAuth1(key1, key2, key3, key4)
@@ -32,7 +34,7 @@ import config
 
 
 BATCH_INTERVAL = 60  # How frequently to update (seconds)
-BLOCKSIZE = 20  # How many tweets per update
+BLOCKSIZE = 50  # How many tweets per update
 
 
 def main():
@@ -47,15 +49,21 @@ def main():
 
 
 def data_plotting(q):
-    fig = plt.figure()
-    ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+    plt.ion() # Interactive mode
+    fig = plt.figure(figsize=(30, 30))
+    ax = plt.axes(projection=ccrs.PlateCarree())
+    ax.set_extent([-130, -60, 20, 50])
+    ax.coastlines()
     while True:
         if q.empty():
-            time.sleep(10)
+            time.sleep(5)
         else:
-            data = q.get()
-            for t in data:
-                ax.scatter(t[0], t[1])
+            data = np.array(q.get())
+            try:
+                ax.scatter(data[:, 0], data[:, 1], transform=ccrs.PlateCarree())
+                plt.draw()
+            except IndexError: # Empty array
+                pass
 
 
 def spark_stream(sc, ssc, q):
@@ -118,7 +126,7 @@ def stream_twitter_data():
             contents = [post['text'], post['coordinates'], post['place']]
             count   += 1
             yield str(contents)
-        except ValueError, KeyError:
+        except:
             print(line)
 
 
