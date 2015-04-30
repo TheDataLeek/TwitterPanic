@@ -11,9 +11,18 @@ On Monday I attended the CU Boulder Computer Science Senior Projects Expo, and t
 in particular that I thought was pretty neat: determining areas of civil unrest through Twitter
 post analysis. They had some pretty cool visuals and used Apache Spark, so I figured I'd try to
 recreate it on my own. What follows is an initial prototype attempt as a proof of concept. I'll go
-through each step included here,
-[but I've also included the code on my github profile](https://github.com/willzfarmer/TwitterPanic),
-so feel free to clone and run it.
+through each step included here, [but I've also included the code on my github
+profile](https://github.com/willzfarmer/TwitterPanic), so feel free to clone and run it. (Please
+also checkout this article on my [website](www.will-farmer.com) where the formatting will actually
+work.)
+
+The final result is pretty neat.
+
+<script>
+<video width="960" height="540" controls>
+<source src="demosped.webm" type="video/webm">
+</video> 
+</script>
 
 #PySpark Streaming
 
@@ -43,9 +52,20 @@ mean that you're pulling in data over each one of those elements. I did not do t
 Rate Limiting](https://dev.twitter.com/rest/public/rate-limiting), which I'll go over more in depth
 later.)
 
+    :::python
+    stream = stream.transform(tfunc)
+
 Now we perform our analysis on the streaming object. (I'll cover this more in depth later)
 
+    :::python
+    coord_stream = stream.map(lambda line: ast.literal_eval(line)) \
+                        .filter(filter_posts) \
+                        .map(get_coord)
+
 After the analysis is done we output the data. (Again, I'll go over this later)
+
+    :::python
+    coord_stream.foreachRDD(lambda t, rdd: q.put(rdd.collect()))
 
 Since Spark is lazily evaluated, nothing has been done yet. All we've done is establish the fact
 that we have some data stream and that we wish to perform some series of steps on it in our
@@ -55,6 +75,53 @@ analysis. The final step is to start our stream and basically just wait for some
     ssc.start()
     ssc.awaitTermination()
 
+And that's it! We have now a constantly streaming object that we can pull from.
+
+#Transforming our Data Stream
+
+In order to convert our initial blank RDD to twitter data, we apply a flat map over it. This
+converts each element (currently just one) to my stream output.
+
+    :::python
+    return rdd.flatMap(lambda x: stream_twitter_data())
+
+The stream output is determined by the contents of the following streaming endpoint.
+
+    https://stream.twitter.com/1.1/statuses/filter.json?language=en&locations=-130,20,-60,50
+
+This restricts my results to English tweets over a bounding box that is mostly just the United
+States. (You could remove the bounding box option, but since the only language I know is English I
+wanted to be able to accurately parse the results.)
+
+The response that we get when we use the `stream=True` option with `requests` has an iterable
+object. We iterate over those lines and after receiving a set number of tweets we break and
+terminate our request. If we run into any hiccups along the way, for the purpose of this prototype,
+we just print those out for visual debugging.
+
+    :::python
+    response  = requests.get(query_url, auth=config.auth, stream=True)
+    print(query_url, response) # 200 <OK>
+    count = 0
+    for line in response.iter_lines():  # Iterate over streaming tweets
+        try:
+            if count > BLOCKSIZE:
+                break
+            post     = json.loads(line.decode('utf-8'))
+            contents = [post['text'], post['coordinates'], post['place']]
+            count   += 1
+            yield str(contents)
+        except:
+            print(line)
+
+#Rate Limiting
+
+Because Twitter will only let me query their site 15 times in 15 minutes, I'm restricted in how much
+actual analysis I can do. Not only do I have to use their sample stream, but I can only update once
+every 60 seconds unless I want to be rate limited very quickly. Hence why this process is so slow.
+The next step to make this update at a more reasonable speed is to maintain the `response` object
+that we get from the request so that we don't have to run into query limits, but all attempts to
+make that work failed horribly (I'm hoping to get it working at one point, but right now it will
+just hang and never evaluate anything).
 
 #Appendix: Code
 
