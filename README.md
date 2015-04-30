@@ -18,11 +18,9 @@ work.)
 
 The final result is pretty neat.
 
-<script>
 <video width="960" height="540" controls>
 <source src="demosped.webm" type="video/webm">
 </video> 
-</script>
 
 #PySpark Streaming
 
