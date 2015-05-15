@@ -5,6 +5,7 @@ import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming._
 import org.apache.spark.streaming.twitter._
+import org.apache.spark.streaming.twitter.TwitterUtils
 
 object Analysis {
   def main(args: Array[String]) {

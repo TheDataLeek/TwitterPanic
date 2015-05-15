@@ -1,0 +1,6 @@
+The config file is of the form
+
+    consumerkey
+    consumerkeysecret
+    accesskey
+    accesskeysecret
