@@ -1,7 +1,21 @@
 [0m[[0minfo[0m] [0mPackaging /home/william/Projects/twitter/scala/target/scala-2.11/twitter-panic_2.11-1.0.jar ...[0m
 [0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	Analysis$$anon$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Analysis$$anon$1.class[0m
 [0m[[0mdebug[0m] [0m	Analysis$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Analysis$.class[0m
+[0m[[0mdebug[0m] [0m	Analysis$$anon$1$$anonfun$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Analysis$$anon$1$$anonfun$2.class[0m
+[0m[[0mdebug[0m] [0m	Analysis$$anon$1$$anonfun$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Analysis$$anon$1$$anonfun$1.class[0m
+[0m[[0mdebug[0m] [0m	Analysis$$anon$1$$anonfun$3.class[0m
+[0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Analysis$$anon$1$$anonfun$3.class[0m
+[0m[[0mdebug[0m] [0m	Config.class[0m
+[0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Config.class[0m
+[0m[[0mdebug[0m] [0m	Config$.class[0m
+[0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Config$.class[0m
+[0m[[0mdebug[0m] [0m	Analysis$$anon$1$$anonfun$4.class[0m
+[0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Analysis$$anon$1$$anonfun$4.class[0m
 [0m[[0mdebug[0m] [0m	Analysis.class[0m
 [0m[[0mdebug[0m] [0m	  /home/william/Projects/twitter/scala/target/scala-2.11/classes/Analysis.class[0m
 [0m[[0minfo[0m] [0mDone packaging.[0m
