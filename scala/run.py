@@ -11,9 +11,9 @@ with open('config', 'r') as conf_file:
                '--class "Analysis" '
                '--master local[4] '
                'target/scala-2.10/TwitterPanic-assembly-1.0.jar '
-               '{} '
-               '{} '
-               '{} '
-               '{}').format(conf[0], conf[1], conf[2], conf[3])
+               '-c {} '
+               '-s {} '
+               '-a {} '
+               '-t {}').format(conf[0], conf[1], conf[2], conf[3])
 
     os.system(execute)

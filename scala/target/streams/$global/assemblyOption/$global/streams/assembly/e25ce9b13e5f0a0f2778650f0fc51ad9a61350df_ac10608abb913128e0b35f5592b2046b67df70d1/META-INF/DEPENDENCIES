@@ -1,0 +1,19 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Spark Project External Twitter
+
+
+From: 'an unknown organization'
+  - empty (http://nexus.sonatype.org/oss-repository-hosting.html/unused) org.spark-project.spark:unused:jar:1.0.0
+    License: The Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - twitter4j-core (http://twitter4j.org/) org.twitter4j:twitter4j-core:jar:3.0.3
+    License: Apache License 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - twitter4j-stream (http://twitter4j.org/) org.twitter4j:twitter4j-stream:jar:3.0.3
+    License: Apache License 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+
+
+
+

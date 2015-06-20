@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Implementation-Title: Spark Project External Twitter
+Implementation-Version: 1.4.0
+Specification-Vendor: The Apache Software Foundation
+Built-By: jenkins
+Created-By: Apache Maven 3.1.1
+Implementation-URL: http://spark.apache.org/
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache.spark
+Build-Jdk: 1.6.0_45
+Specification-Title: Spark Project External Twitter
+Specification-Version: 1.4.0
+Archiver-Version: Plexus Archiver
+

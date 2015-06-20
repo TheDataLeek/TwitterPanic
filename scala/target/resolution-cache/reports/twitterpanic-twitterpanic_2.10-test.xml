@@ -7,10 +7,10 @@
 		revision="1.0"
 		conf="test"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20150619212745"/>
+		date="20150619215307"/>
 	<dependencies>
 		<module organisation="com.github.scopt" name="scopt_2.10">
-			<revision name="3.3.0" status="release" pubdate="20141214182234" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/scopt/scopt" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+			<revision name="3.3.0" status="release" pubdate="20141214182234" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/scopt/scopt" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="5">
 				<license name="MIT License" url="http://www.opensource.org/licenses/mit-license.php"/>
 				<metadata-artifact status="no" details="" size="2670" time="0" location="/home/william/.ivy2/cache/com.github.scopt/scopt_2.10/ivy-3.3.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/github/scopt/scopt_2.10/3.3.0/scopt_2.10-3.3.0.pom"/>
 				<caller organisation="twitterpanic" name="twitterpanic_2.10" conf="test, compile, runtime" rev="3.3.0" rev-constraint-default="3.3.0" rev-constraint-dynamic="3.3.0" callerrev="1.0"/>
@@ -38,6 +38,53 @@
 				<artifacts>
 					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="7130772" time="0" location="/home/william/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.5.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.5/scala-library-2.10.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.spark" name="spark-streaming-twitter_2.10">
+			<revision name="1.4.0" status="release" pubdate="20150610135700" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spark.apache.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+				<metadata-artifact status="no" details="" size="41301" time="0" location="/home/william/.ivy2/cache/org.apache.spark/spark-streaming-twitter_2.10/ivy-1.4.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/spark/spark-streaming-twitter_2.10/1.4.0/spark-streaming-twitter_2.10-1.4.0.pom"/>
+				<caller organisation="twitterpanic" name="twitterpanic_2.10" conf="test, compile, runtime" rev="1.4.0" rev-constraint-default="1.4.0" rev-constraint-dynamic="1.4.0" callerrev="1.0"/>
+				<artifacts>
+					<artifact name="spark-streaming-twitter_2.10" type="jar" ext="jar" status="no" details="" size="23236" time="0" location="/home/william/.ivy2/cache/org.apache.spark/spark-streaming-twitter_2.10/jars/spark-streaming-twitter_2.10-1.4.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/spark/spark-streaming-twitter_2.10/1.4.0/spark-streaming-twitter_2.10-1.4.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.spark-project.spark" name="unused">
+			<revision name="1.0.0" status="release" pubdate="20141022010005" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="4">
+				<license name="The Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2849" time="0" location="/home/william/.ivy2/cache/org.spark-project.spark/unused/ivy-1.0.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/spark-project/spark/unused/1.0.0/unused-1.0.0.pom"/>
+				<caller organisation="org.apache.spark" name="spark-streaming-twitter_2.10" conf="default, compile, runtime, master" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="1.4.0"/>
+				<artifacts>
+					<artifact name="unused" type="jar" ext="jar" status="no" details="" size="2777" time="0" location="/home/william/.ivy2/cache/org.spark-project.spark/unused/jars/unused-1.0.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/spark-project/spark/unused/1.0.0/unused-1.0.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.twitter4j" name="twitter4j-stream">
+			<revision name="3.0.3" status="release" pubdate="20121223051417" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://twitter4j.org/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="2">
+				<license name="Apache License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3442" time="0" location="/home/william/.ivy2/cache/org.twitter4j/twitter4j-stream/ivy-3.0.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/twitter4j/twitter4j-stream/3.0.3/twitter4j-stream-3.0.3.pom"/>
+				<caller organisation="org.apache.spark" name="spark-streaming-twitter_2.10" conf="default, compile, runtime, master" rev="3.0.3" rev-constraint-default="3.0.3" rev-constraint-dynamic="3.0.3" callerrev="1.4.0"/>
+				<artifacts>
+					<artifact name="twitter4j-stream" type="jar" ext="jar" status="no" details="" size="56307" time="0" location="/home/william/.ivy2/cache/org.twitter4j/twitter4j-stream/jars/twitter4j-stream-3.0.3.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/twitter4j/twitter4j-stream/3.0.3/twitter4j-stream-3.0.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.twitter4j" name="twitter4j-core">
+			<revision name="3.0.3" status="release" pubdate="20121223051256" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://twitter4j.org/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="3">
+				<license name="Apache License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3591" time="0" location="/home/william/.ivy2/cache/org.twitter4j/twitter4j-core/ivy-3.0.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/twitter4j/twitter4j-core/3.0.3/twitter4j-core-3.0.3.pom"/>
+				<caller organisation="org.twitter4j" name="twitter4j-stream" conf="compile, runtime" rev="3.0.3" rev-constraint-default="3.0.3" rev-constraint-dynamic="3.0.3" callerrev="3.0.3"/>
+				<artifacts>
+					<artifact name="twitter4j-core" type="jar" ext="jar" status="no" details="" size="284077" time="0" location="/home/william/.ivy2/cache/org.twitter4j/twitter4j-core/jars/twitter4j-core-3.0.3.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/twitter4j/twitter4j-core/3.0.3/twitter4j-core-3.0.3.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
