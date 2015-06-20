@@ -1,5 +1,5 @@
-[0m[[0minfo[0m] [0mIncluding from cache: unused-1.0.0.jar[0m
 [0m[[0minfo[0m] [0mIncluding from cache: spark-streaming-twitter_2.10-1.4.0.jar[0m
+[0m[[0minfo[0m] [0mIncluding from cache: unused-1.0.0.jar[0m
 [0m[[0minfo[0m] [0mIncluding from cache: twitter4j-stream-3.0.3.jar[0m
 [0m[[0minfo[0m] [0mIncluding from cache: scopt_2.10-3.3.0.jar[0m
 [0m[[0minfo[0m] [0mIncluding from cache: twitter4j-core-3.0.3.jar[0m
@@ -15,7 +15,7 @@
 [0m[[0minfo[0m] [0mStrategy 'deduplicate' was applied to 2 files (Run the task at debug level to see details)[0m
 [0m[[33mwarn[0m] [0mStrategy 'discard' was applied to 2 files[0m
 [0m[[33mwarn[0m] [0mStrategy 'first' was applied to a file[0m
-[0m[[0minfo[0m] [0mSHA-1: 2bd4ee97f821cf6cc5445bc12b90e18bd5317996[0m
+[0m[[0minfo[0m] [0mSHA-1: 32e12b609fec39aebe266010e41b6ed14bc800ce[0m
 [0m[[0minfo[0m] [0mPackaging /home/william/Projects/twitter/scala/target/scala-2.10/TwitterPanic-assembly-1.0.jar ...[0m
 [0m[[0mdebug[0m] [0mInput file mappings:[0m
 [0m[[0mdebug[0m] [0m	Analysis$$anon$1$$anonfun$1.class[0m

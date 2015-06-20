@@ -14,6 +14,9 @@ object Analysis {
     System.setProperty("twitter4j.oauth.consumerSecret", keys.consumerKeySecret)
     System.setProperty("twitter4j.oauth.accessToken", keys.accessToken)
     System.setProperty("twitter4j.oauth.accessTokenSecret", keys.accessTokenSecret)
+    //System.setProperty("twitter4j.streamBaseURL", "https://stream.twitter.com/1.1/statuses/filter.json?locations=-130,20,-60,50")
+
+    val filters = Array(Array("language", "en"), Array("locations", "-130,20,-60,50"))
 
     val sparkConf = new SparkConf().setAppName("TwitterPanic")
     val ssc = new StreamingContext(sparkConf, Seconds(2))
