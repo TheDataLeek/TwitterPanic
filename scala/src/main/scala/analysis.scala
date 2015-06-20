@@ -20,34 +20,32 @@ object Analysis {
 //
 //    ssc.start()
 //    ssc.awaitTermination()
+    parseArgs()
   }
 
   def parseArgs() {
   /* Using immutable option parsing */
 
-    case class Config(
-      //consumerKey: String,
-      //consumerKeySecret: String,
-      //accessToken: String,
-      accessTokenSecret: String
-    )
+   case class Config(
+     consumerKey: String,
+     consumerKeySecret: String,
+     accessToken: String,
+     accessTokenSecret: String
+   )
 
-    var parser = new scopt.OptionParser[Config]("TwitterPanic") {
-   //   opt[String]('c', "consumerKey") action { (x, c) =>
-   //     c.copy(consumerKey = x) } text("Consumer Key")
-   //   opt[String]('s', "consumerKeySecret") action { (x, c) =>
-   //     c.copy(consumerKeySecret = x) } text("Consumer Secret Key")
-   //   opt[String]('a', "accessToken") action { (x, c) =>
-   //     c.copy(accessToken = x) } text("Access Token")
-      opt[String]('t', "accessTokenSecret") action { (x, c) =>
-        c.copy(accessTokenSecret = x) } text("Access Secret Token")
-    }
+   var parser = new scopt.OptionParser[Config]("TwitterPanic") {
+     opt[String]('c', "consumerKey") action { (x, c) =>
+       c.copy(consumerKey = x) } text("Consumer Key")
+     opt[String]('s', "consumerKeySecret") action { (x, c) =>
+       c.copy(consumerKeySecret = x) } text("Consumer Secret Key")
+     opt[String]('a', "accessToken") action { (x, c) =>
+       c.copy(accessToken = x) } text("Access Token")
+     opt[String]('t', "accessTokenSecret") action { (x, c) =>
+       c.copy(accessTokenSecret = x) } text("Access Secret Token")
+   }
 
-    println(parser)
-
-      //head("scopt", "3.x")
-      //help("help") text("Arguments are keys")
-    //println(parser.parse(args, Config("default")))
+      head("scopt", "3.x")
+      help("help") text("Arguments are keys")
     //parser.parse(args, Config()) match {
     //  case Some(config) => println(config)
     //  case None => println("Error, malformed arguments")

@@ -5,12 +5,12 @@ import os
 with open('config', 'r') as conf_file:
     conf = [c[:-1] for c in conf_file.readlines()]
 
-    os.system('sbt package')
+    os.system('sbt assembly')
 
     execute = ('$SPARK_HOME/bin/spark-submit '
                '--class "Analysis" '
                '--master local[4] '
-               'target/scala-2.11/twitter-panic_2.11-1.0.jar '
+               'target/scala-2.10/TwitterPanic-assembly-1.0.jar '
                '{} '
                '{} '
                '{} '
